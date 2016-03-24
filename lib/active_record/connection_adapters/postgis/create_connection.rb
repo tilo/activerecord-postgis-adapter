@@ -9,8 +9,8 @@ module ActiveRecord  # :nodoc:
 
     # START OF ActiveRecord/ConnectionHandling
 
-    RAILS_ENV   = -> { (Rails.env if defined?(Rails.env)) || ENV["RAILS_ENV"] || ENV["RACK_ENV"] }
-    DEFAULT_ENV = -> { RAILS_ENV.call || "default_env" }
+    RAILS_ENV   = -> { (Rails.env if defined?(Rails.env)) || ENV["RAILS_ENV"] || ENV["RACK_ENV"] } unless defined? RAILS_ENV
+    DEFAULT_ENV = -> { RAILS_ENV.call || "default_env" } unless defined? DEFAULT_ENV
 
     # Establishes the connection to the database. Accepts a hash as input where
     # the <tt>:adapter</tt> key must be specified with the name of a database adapter (in lower-case)
